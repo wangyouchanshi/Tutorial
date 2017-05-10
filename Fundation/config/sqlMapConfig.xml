@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "mybatis-3-config.dtd">
+<configuration>
+		<typeAliases>
+			<!-- 配置所需要的别名 -->
+				<!-- 批量别名定义 指定包路径，自动扫描包下边的pojo，定义别名，别名默认为类名（首字母小写或大写） -->
+		<package name="com.bwie.bean" />
+			
+		</typeAliases>
+		
+		
+		
+		
+		
+</configuration>

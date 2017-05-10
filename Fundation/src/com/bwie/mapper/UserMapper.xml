@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bwie.mapper.UserMapper">
+	<select id="checkLogin" parameterType="com.bwie.bean.User" resultType="int">
+		select count(*) from tb_user where uname=#{uname} and pwd=#{pwd}
+	</select>
+	<select id="checkName" parameterType="string" resultType="int">
+		select count(*) from tb_user where uname=#{name} 
+	</select>
+	<select id="findUid" parameterType="com.bwie.bean.User" resultType="int">
+		select uid from tb_user where uname=#{uname} and pwd=#{pwd}
+	</select>
+	
+	<select id="findCount" resultType="int">
+		select count(*) from tb_money;
+	</select>
+	<select id="findmohucount" parameterType="string" resultType="int">
+		select count(*) from tb_money where mname like '%${value}%';
+	</select>
+	
+	<select id="getList" parameterType="hashmap" resultType="com.bwie.bean.Money">
+	
+		select * from tb_money limit #{star} , #{end}
+	</select>
+	<select id="getMohuList" parameterType="hashmap" resultType="com.bwie.bean.Money">
+	
+		select * from tb_money where  mname like '%${mohu}%'  limit #{star} , #{end}
+	</select>
+	
+	<select id="getOneObject" parameterType="int" resultType="com.bwie.bean.Money">
+		select * from tb_money where mid=#{mid}
+	</select>
+	
+	<update id="updateMoney" parameterType="com.bwie.bean.Money" >
+		update tb_money set rest=rest-#{mai} where mid=#{mid}
+	</update>
+	<update id="updateJijinup" parameterType="com.bwie.bean.Money" >
+		update tb_money set rest=rest+#{mai} where mid=#{mid}
+	</update>
+	
+	<insert id="saveInsert" parameterType="com.bwie.bean.Money">
+		insert into tb_um set uid=#{uid},mid=#{mid},mcount=#{mai},mname=#{mname}
+	</insert>
+	
+	<select id="findCheckList" parameterType="int" resultType="com.bwie.bean.Cen">
+		select * from tb_um where uid=#{xuid}
+	</select>
+	
+	<delete id="deletejilu" parameterType="int" >
+		delete from tb_um where id=#{did}
+	</delete>
+	<insert id="saveUser" parameterType="com.bwie.bean.User">
+		insert into tb_user set uname=#{uname},pwd=#{pwd},usex=#{usex}
+	</insert>
+	
+	<select id="findUserByUid" parameterType="string" resultType="com.bwie.bean.User">
+		select * from tb_user where baidu=#{_parameter} 
+	</select>
+	
+	<update id="bangdingUser" parameterType="com.bwie.bean.User" >
+	
+		update tb_user set baidu=#{baidu} where uname=#{uname} and pwd=#{pwd}
+	
+	</update>
+</mapper>
+
